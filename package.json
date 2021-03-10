@@ -1,0 +1,27 @@
+{
+  "name": "lumens-mediaprocessor",
+  "version": "1.0.0",
+  "api_version": "1.0.0",
+  "description": "Lumens Media Processor",
+  "keywords": [
+    "Lumens",
+    "Media Processor"
+  ],
+  "manufacturer": "Lumens",
+  "product": "LC200",
+  "shortname": "MediaProcessor",
+  "homepage": "https://github.com/bitfocus/companion-module-lumens-mediaprocessor#readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitfocus/companion-module-lumens-mediaprocessor.git"
+  },
+  "author": "Lumens Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bitfocus/companion-module-lumens-mediaprocessor/issues"
+  }
+}

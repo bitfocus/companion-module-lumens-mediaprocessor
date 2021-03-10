@@ -1,0 +1,385 @@
+var icons = require('./icons');
+var presets = [];
+var index;
+var Val0Cmd = [
+	{ category: 'Video/Audio', label: 'Start Record', action: 'StartRecord' },
+	{ category: 'Video/Audio', label: 'Stop Record', action: 'StopRecord' },
+	{ category: 'Image', label: 'Snapshot', action: 'Snapshot' },
+
+];
+
+var Val1Cmd = [
+	{ category: 'System', label: 'Standby', action: 'PowerMode', val: '31' },
+	{ category: 'System', label: 'Wake up', action: 'PowerMode', val: '32' },
+	{ category: 'System', label: 'Start Backup to USB', action: 'BackuptoUSB', val: '30' },
+	{ category: 'System', label: 'Stop Backup to USB ', action: 'BackuptoUSB', val: '31' },
+	{ category: 'Image', label: 'Layout ID 1', action: 'Layout', val: '01' },
+	{ category: 'Image', label: 'Layout ID 2', action: 'Layout', val: '02' },
+	{ category: 'Image', label: 'Layout ID 3', action: 'Layout', val: '03' },
+	{ category: 'Image', label: 'Layout ID 4', action: 'Layout', val: '04' },
+	{ category: 'Image', label: 'Layout ID 5', action: 'Layout', val: '05' },
+	{ category: 'Image', label: 'Layout ID 6', action: 'Layout', val: '06' },
+	{ category: 'Image', label: 'Layout ID 7', action: 'Layout', val: '07' },
+	{ category: 'Image', label: 'Layout ID 8', action: 'Layout', val: '08' },
+	{ category: 'Image', label: 'Layout ID 9', action: 'Layout', val: '09' },
+	{ category: 'Image', label: 'Layout ID 10', action: 'Layout', val: '0A' },
+	{ category: 'Image', label: 'Layout ID 11', action: 'Layout', val: '0B' },
+	{ category: 'Image', label: 'Layout ID 12', action: 'Layout', val: '0C' },
+	{ category: 'Image', label: 'Background Off', action: 'Background', val: '00' },
+	{ category: 'Image', label: 'Background ID 1', action: 'Background', val: '01' },
+	{ category: 'Image', label: 'Background ID 2', action: 'Background', val: '02' },
+	{ category: 'Image', label: 'Background ID 3', action: 'Background', val: '03' },
+	{ category: 'Image', label: 'Background ID 4', action: 'Background', val: '04' },
+	{ category: 'Image', label: 'Background ID 5', action: 'Background', val: '05' },
+	{ category: 'Image', label: 'Background ID 6', action: 'Background', val: '06' },
+	{ category: 'Image', label: 'Background ID 7', action: 'Background', val: '07' },
+	{ category: 'Image', label: 'Background ID 8', action: 'Background', val: '08' },
+	{ category: 'Image', label: 'Background ID 9', action: 'Background', val: '09' },
+	{ category: 'Image', label: 'Overlay Off', action: 'Overlay', val: '00' },
+	{ category: 'Image', label: 'Overlay ID 1', action: 'Overlay', val: '01' },
+	{ category: 'Image', label: 'Overlay ID 2', action: 'Overlay', val: '02' },
+	{ category: 'Image', label: 'Overlay ID 3', action: 'Overlay', val: '03' },
+	{ category: 'Image', label: 'Overlay ID 4', action: 'Overlay', val: '04' },
+	{ category: 'Image', label: 'Overlay ID 5', action: 'Overlay', val: '05' },
+	{ category: 'Image', label: 'Overlay ID 6', action: 'Overlay', val: '06' },
+	{ category: 'Image', label: 'Overlay ID 7', action: 'Overlay', val: '07' },
+	{ category: 'Image', label: 'Overlay ID 8', action: 'Overlay', val: '08' },
+	{ category: 'Image', label: 'Overlay ID 9', action: 'Overlay', val: '09' },
+	{ category: 'Image', label: 'Overlay ID 10', action: 'Overlay', val: '0A' },
+	{ category: 'Image', label: 'Scene ID 1', action: 'Scene', val: '01' },
+	{ category: 'Image', label: 'Scene ID 2', action: 'Scene', val: '02' },
+	{ category: 'Image', label: 'Scene ID 3', action: 'Scene', val: '03' },
+	{ category: 'Image', label: 'Scene ID 4', action: 'Scene', val: '04' },
+	{ category: 'Image', label: 'Scene ID 5', action: 'Scene', val: '05' },
+	{ category: 'Image', label: 'Scene ID 6', action: 'Scene', val: '06' },
+	{ category: 'Image', label: 'Scene ID 7', action: 'Scene', val: '07' },
+	{ category: 'Image', label: 'Scene ID 8', action: 'Scene', val: '08' },
+	{ category: 'Image', label: 'Scene ID 9', action: 'Scene', val: '09' },
+	{ category: 'Image', label: 'Scene ID 10', action: 'Scene', val: '0A' },
+	{ category: 'Image', label: 'Macro 1', action: 'Macro', val: '31' },
+	{ category: 'Image', label: 'Macro 2', action: 'Macro', val: '32' },
+	{ category: 'Image', label: 'Macro 3', action: 'Macro', val: '33' },
+
+];
+
+var Val2Cmd = [
+	{ category: 'Video/Audio', label: 'Audio In 1 Volume 25', action: 'AudioVolumeInput', val: '31', val2: '19' },
+	{ category: 'Video/Audio', label: 'Audio In 1 Volume 50', action: 'AudioVolumeInput', val: '31', val2: '32' },
+	{ category: 'Video/Audio', label: 'Audio In 1 Volume 75', action: 'AudioVolumeInput', val: '31', val2: '4B' },
+	{ category: 'Video/Audio', label: 'Audio In 1 Volume 100', action: 'AudioVolumeInput', val: '31', val2: '64' },
+	{ category: 'Video/Audio', label: 'Audio In 1 Volume Max', action: 'AudioVolumeInput', val: '31', val2: '7D' },
+	{ category: 'Video/Audio', label: 'Audio In 2 Volume 25', action: 'AudioVolumeInput', val: '32', val2: '19' },
+	{ category: 'Video/Audio', label: 'Audio In 2 Volume 50', action: 'AudioVolumeInput', val: '32', val2: '32' },
+	{ category: 'Video/Audio', label: 'Audio In 2 Volume 75', action: 'AudioVolumeInput', val: '32', val2: '4B' },
+	{ category: 'Video/Audio', label: 'Audio In 2 Volume 100', action: 'AudioVolumeInput', val: '32', val2: '64' },
+	{ category: 'Video/Audio', label: 'Audio In 2 Volume Max', action: 'AudioVolumeInput', val: '32', val2: '7D' },
+	{ category: 'Video/Audio', label: 'Audio In 3 Volume 25', action: 'AudioVolumeInput', val: '33', val2: '19' },
+	{ category: 'Video/Audio', label: 'Audio In 3 Volume 50', action: 'AudioVolumeInput', val: '33', val2: '32' },
+	{ category: 'Video/Audio', label: 'Audio In 3 Volume 75', action: 'AudioVolumeInput', val: '33', val2: '4B' },
+	{ category: 'Video/Audio', label: 'Audio In 3 Volume 100', action: 'AudioVolumeInput', val: '33', val2: '64' },
+	{ category: 'Video/Audio', label: 'Audio In 3 Volume Max', action: 'AudioVolumeInput', val: '33', val2: '7D' },
+	{ category: 'Video/Audio', label: 'Audio In 4 Volume 25', action: 'AudioVolumeInput', val: '34', val2: '19' },
+	{ category: 'Video/Audio', label: 'Audio In 4 Volume 50', action: 'AudioVolumeInput', val: '34', val2: '32' },
+	{ category: 'Video/Audio', label: 'Audio In 4 Volume 75', action: 'AudioVolumeInput', val: '34', val2: '4B' },
+	{ category: 'Video/Audio', label: 'Audio In 4 Volume 100', action: 'AudioVolumeInput', val: '34', val2: '64' },
+	{ category: 'Video/Audio', label: 'Audio In 4 Volume Max', action: 'AudioVolumeInput', val: '34', val2: '7D' },
+	{ category: 'Video/Audio', label: 'Line HDMI Out Volume 25', action: 'AudioVolumeOutput', val: '31', val2: '19' },
+	{ category: 'Video/Audio', label: 'Line HDMI Out Volume 50 ', action: 'AudioVolumeOutput', val: '31', val2: '32' },
+	{ category: 'Video/Audio', label: 'Line HDMI Out Volume 75', action: 'AudioVolumeOutput', val: '31', val2: '4B' },
+	{ category: 'Video/Audio', label: 'Line HDMI Out Volume 100', action: 'AudioVolumeOutput', val: '31', val2: '64' },
+	{ category: 'Video/Audio', label: 'Line HDMI Out Volume Max', action: 'AudioVolumeOutput', val: '31', val2: '7D' },
+	{ category: 'Video/Audio', label: 'PGM Out Volume 25', action: 'AudioVolumeOutput', val: '32', val2: '19' },
+	{ category: 'Video/Audio', label: 'PGM Out Volume 50', action: 'AudioVolumeOutput', val: '32', val2: '32' },
+	{ category: 'Video/Audio', label: 'PGM Out Volume 75', action: 'AudioVolumeOutput', val: '32', val2: '4B' },
+	{ category: 'Video/Audio', label: 'PGM Out Volume 100', action: 'AudioVolumeOutput', val: '32', val2: '64' },
+	{ category: 'Video/Audio', label: 'PGM Out Volume Max', action: 'AudioVolumeOutput', val: '32', val2: '7D' },
+	{ category: 'Video/Audio', label: 'Mute Audio Input 1', action: 'AudioMuteInput', val: '31', val2: '31' },
+	{ category: 'Video/Audio', label: 'Mute Audio Input 2', action: 'AudioMuteInput', val: '32', val2: '31' },
+	{ category: 'Video/Audio', label: 'Mute Audio Input 3', action: 'AudioMuteInput', val: '33', val2: '31' },
+	{ category: 'Video/Audio', label: 'Mute Audio Input 4', action: 'AudioMuteInput', val: '34', val2: '31' },
+	{ category: 'Video/Audio', label: 'Unmute Audio Input 1', action: 'AudioMuteInput', val: '31', val2: '30' },
+	{ category: 'Video/Audio', label: 'Unmute Audio Input 2', action: 'AudioMuteInput', val: '32', val2: '30' },
+	{ category: 'Video/Audio', label: 'Unmute Audio Input 3', action: 'AudioMuteInput', val: '33', val2: '30' },
+	{ category: 'Video/Audio', label: 'Unmute Audio Input 4', action: 'AudioMuteInput', val: '34', val2: '30' },
+	{ category: 'Video/Audio', label: 'Mute Line HDMI Audio Out', action: 'AudioMuteOutput', val: '31', val2: '31' },
+	{ category: 'Video/Audio', label: 'Unmute Line HDMI Audio Out', action: 'AudioMuteOutput', val: '31', val2: '30' },
+	{ category: 'Video/Audio', label: 'Mute PGM Audio Out', action: 'AudioMuteOutput', val: '32', val2: '31' },
+	{ category: 'Video/Audio', label: 'Unmute PGM Audio Out', action: 'AudioMuteOutput', val: '32', val2: '30' },
+	{ category: 'Video/Audio', label: 'Audio Input 1 Line In', action: 'AudioTypeInput', val: '31', val2: '31' },
+	{ category: 'Video/Audio', label: 'Audio Input 1 Mic In', action: 'AudioTypeInput', val: '31', val2: '32' },
+	{ category: 'Video/Audio', label: 'Audio Input 1 HDMI In', action: 'AudioTypeInput', val: '31', val2: '33' },
+	{ category: 'Video/Audio', label: 'Audio Input 1 IP Audio', action: 'AudioTypeInput', val: '31', val2: '36' },
+	{ category: 'Video/Audio', label: 'Audio Input 2 Line In', action: 'AudioTypeInput', val: '32', val2: '31' },
+	{ category: 'Video/Audio', label: 'Audio Input 2 Mic In', action: 'AudioTypeInput', val: '32', val2: '32' },
+	{ category: 'Video/Audio', label: 'Audio Input 2 HDMI In', action: 'AudioTypeInput', val: '32', val2: '33' },
+	{ category: 'Video/Audio', label: 'Audio Input 2 IP Audio', action: 'AudioTypeInput', val: '32', val2: '36' },
+	{ category: 'Video/Audio', label: 'Audio Input 3 Line In', action: 'AudioTypeInput', val: '33', val2: '31' },
+	{ category: 'Video/Audio', label: 'Audio Input 3 Mic In', action: 'AudioTypeInput', val: '33', val2: '32' },
+	{ category: 'Video/Audio', label: 'Audio Input 3 HDMI In', action: 'AudioTypeInput', val: '33', val2: '33' },
+	{ category: 'Video/Audio', label: 'Audio Input 3 IP Audio', action: 'AudioTypeInput', val: '33', val2: '36' },
+	{ category: 'Video/Audio', label: 'Audio Input 4 Line In', action: 'AudioTypeInput', val: '34', val2: '31' },
+	{ category: 'Video/Audio', label: 'Audio Input 4 Mic In', action: 'AudioTypeInput', val: '34', val2: '32' },
+	{ category: 'Video/Audio', label: 'Audio Input 4 HDMI In', action: 'AudioTypeInput', val: '34', val2: '33' },
+	{ category: 'Video/Audio', label: 'Audio Input 4 IP Audio', action: 'AudioTypeInput', val: '34', val2: '36' },
+	{ category: 'Video/Audio', label: 'Audio Output ALL', action: 'AudioTypeOutput', val: '31', val2: '31' },
+	{ category: 'Video/Audio', label: 'Audio Output Line Out PGM', action: 'AudioTypeOutput', val: '31', val2: '32' },
+	{ category: 'Video/Audio', label: 'Audio Output Multiview', action: 'AudioTypeOutput', val: '31', val2: '33' },
+	{ category: 'Video/Audio', label: 'Channel 1 Video source 1', action: 'VideoSourceID', val: '31', val2: '1' },
+	{ category: 'Video/Audio', label: 'Channel 1 Video source 2', action: 'VideoSourceID', val: '31', val2: '2' },
+	{ category: 'Video/Audio', label: 'Channel 1 Video source 3', action: 'VideoSourceID', val: '31', val2: '3' },
+	{ category: 'Video/Audio', label: 'Channel 1 Video source 4', action: 'VideoSourceID', val: '31', val2: '4' },
+	{ category: 'Video/Audio', label: 'Channel 1 Video source 5', action: 'VideoSourceID', val: '31', val2: '5' },
+	{ category: 'Video/Audio', label: 'Channel 1 Video source 6', action: 'VideoSourceID', val: '31', val2: '6' },
+	{ category: 'Video/Audio', label: 'Channel 1 Video source 7', action: 'VideoSourceID', val: '31', val2: '7' },
+	{ category: 'Video/Audio', label: 'Channel 1 Video source 8', action: 'VideoSourceID', val: '31', val2: '8' },
+	{ category: 'Video/Audio', label: 'Channel 1 Video source 9', action: 'VideoSourceID', val: '31', val2: '9' },
+	{ category: 'Video/Audio', label: 'Channel 1 Video source 10', action: 'VideoSourceID', val: '31', val2: 'A' },
+	{ category: 'Video/Audio', label: 'Channel 2 Video source 1', action: 'VideoSourceID', val: '32', val2: '1' },
+	{ category: 'Video/Audio', label: 'Channel 2 Video source 2', action: 'VideoSourceID', val: '32', val2: '2' },
+	{ category: 'Video/Audio', label: 'Channel 2 Video source 3', action: 'VideoSourceID', val: '32', val2: '3' },
+	{ category: 'Video/Audio', label: 'Channel 2 Video source 4', action: 'VideoSourceID', val: '32', val2: '4' },
+	{ category: 'Video/Audio', label: 'Channel 2 Video source 5', action: 'VideoSourceID', val: '32', val2: '5' },
+	{ category: 'Video/Audio', label: 'Channel 2 Video source 6', action: 'VideoSourceID', val: '32', val2: '6' },
+	{ category: 'Video/Audio', label: 'Channel 2 Video source 7', action: 'VideoSourceID', val: '32', val2: '7' },
+	{ category: 'Video/Audio', label: 'Channel 2 Video source 8', action: 'VideoSourceID', val: '32', val2: '8' },
+	{ category: 'Video/Audio', label: 'Channel 2 Video source 9', action: 'VideoSourceID', val: '32', val2: '9' },
+	{ category: 'Video/Audio', label: 'Channel 2 Video source 10', action: 'VideoSourceID', val: '32', val2: 'A' },
+	{ category: 'Video/Audio', label: 'Channel 3 Video source 1', action: 'VideoSourceID', val: '33', val2: '1' },
+	{ category: 'Video/Audio', label: 'Channel 3 Video source 2', action: 'VideoSourceID', val: '33', val2: '2' },
+	{ category: 'Video/Audio', label: 'Channel 3 Video source 3', action: 'VideoSourceID', val: '33', val2: '3' },
+	{ category: 'Video/Audio', label: 'Channel 3 Video source 4', action: 'VideoSourceID', val: '33', val2: '4' },
+	{ category: 'Video/Audio', label: 'Channel 3 Video source 5', action: 'VideoSourceID', val: '33', val2: '5' },
+	{ category: 'Video/Audio', label: 'Channel 3 Video source 6', action: 'VideoSourceID', val: '33', val2: '6' },
+	{ category: 'Video/Audio', label: 'Channel 3 Video source 7', action: 'VideoSourceID', val: '33', val2: '7' },
+	{ category: 'Video/Audio', label: 'Channel 3 Video source 8', action: 'VideoSourceID', val: '33', val2: '8' },
+	{ category: 'Video/Audio', label: 'Channel 3 Video source 9', action: 'VideoSourceID', val: '33', val2: '9' },
+	{ category: 'Video/Audio', label: 'Channel 3 Video source 10', action: 'VideoSourceID', val: '33', val2: 'A' },
+	{ category: 'Video/Audio', label: 'Channel 4 Video source 1', action: 'VideoSourceID', val: '34', val2: '1' },
+	{ category: 'Video/Audio', label: 'Channel 4 Video source 2', action: 'VideoSourceID', val: '34', val2: '2' },
+	{ category: 'Video/Audio', label: 'Channel 4 Video source 3', action: 'VideoSourceID', val: '34', val2: '3' },
+	{ category: 'Video/Audio', label: 'Channel 4 Video source 4', action: 'VideoSourceID', val: '34', val2: '4' },
+	{ category: 'Video/Audio', label: 'Channel 4 Video source 5', action: 'VideoSourceID', val: '34', val2: '5' },
+	{ category: 'Video/Audio', label: 'Channel 4 Video source 6', action: 'VideoSourceID', val: '34', val2: '6' },
+	{ category: 'Video/Audio', label: 'Channel 4 Video source 7', action: 'VideoSourceID', val: '34', val2: '7' },
+	{ category: 'Video/Audio', label: 'Channel 4 Video source 8', action: 'VideoSourceID', val: '34', val2: '8' },
+	{ category: 'Video/Audio', label: 'Channel 4 Video source 9', action: 'VideoSourceID', val: '34', val2: '9' },
+	{ category: 'Video/Audio', label: 'Channel 4 Video source 10', action: 'VideoSourceID', val: '34', val2: 'A' },
+	{ category: 'Network', label: 'Start Stream 1', action: 'Stream', val: '31', val2: '2' },
+	{ category: 'Network', label: 'Stop Stream 1', action: 'Stream', val: '31', val2: '1' },
+	{ category: 'Network', label: 'Start Stream 2', action: 'Stream', val: '32', val2: '2' },
+	{ category: 'Network', label: 'Stop Stream 2', action: 'Stream', val: '32', val2: '1' },
+	{ category: 'Network', label: 'Start Stream 3', action: 'Stream', val: '33', val2: '2' },
+	{ category: 'Network', label: 'Stop Stream 3', action: 'Stream', val: '33', val2: '1' },
+	{ category: 'Camera', label: 'Call Channel 1 Camera Preset 1', action: 'CameraPresetRecall', val: '31', val2: '1' },
+	{ category: 'Camera', label: 'Call Channel 1 Camera Preset 2', action: 'CameraPresetRecall', val: '31', val2: '2' },
+	{ category: 'Camera', label: 'Call Channel 1 Camera Preset 3', action: 'CameraPresetRecall', val: '31', val2: '3' },
+	{ category: 'Camera', label: 'Call Channel 1 Camera Preset 4', action: 'CameraPresetRecall', val: '31', val2: '4' },
+	{ category: 'Camera', label: 'Call Channel 1 Camera Preset 5', action: 'CameraPresetRecall', val: '31', val2: '5' },
+	{ category: 'Camera', label: 'Call Channel 1 Camera Preset 6', action: 'CameraPresetRecall', val: '31', val2: '6' },
+	{ category: 'Camera', label: 'Call Channel 1 Camera Preset 7', action: 'CameraPresetRecall', val: '31', val2: '7' },
+	{ category: 'Camera', label: 'Call Channel 1 Camera Preset 8', action: 'CameraPresetRecall', val: '31', val2: '8' },
+	{ category: 'Camera', label: 'Call Channel 1 Camera Preset 9', action: 'CameraPresetRecall', val: '31', val2: '9' },
+	{ category: 'Camera', label: 'Call Channel 2 Camera Preset 1', action: 'CameraPresetRecall', val: '32', val2: '1' },
+	{ category: 'Camera', label: 'Call Channel 2 Camera Preset 2', action: 'CameraPresetRecall', val: '32', val2: '2' },
+	{ category: 'Camera', label: 'Call Channel 2 Camera Preset 3', action: 'CameraPresetRecall', val: '32', val2: '3' },
+	{ category: 'Camera', label: 'Call Channel 2 Camera Preset 4', action: 'CameraPresetRecall', val: '32', val2: '4' },
+	{ category: 'Camera', label: 'Call Channel 2 Camera Preset 5', action: 'CameraPresetRecall', val: '32', val2: '5' },
+	{ category: 'Camera', label: 'Call Channel 2 Camera Preset 6', action: 'CameraPresetRecall', val: '32', val2: '6' },
+	{ category: 'Camera', label: 'Call Channel 2 Camera Preset 7', action: 'CameraPresetRecall', val: '32', val2: '7' },
+	{ category: 'Camera', label: 'Call Channel 2 Camera Preset 8', action: 'CameraPresetRecall', val: '32', val2: '8' },
+	{ category: 'Camera', label: 'Call Channel 2 Camera Preset 9', action: 'CameraPresetRecall', val: '32', val2: '9' },
+	{ category: 'Camera', label: 'Call Channel 3 Camera Preset 1', action: 'CameraPresetRecall', val: '33', val2: '1' },
+	{ category: 'Camera', label: 'Call Channel 3 Camera Preset 2', action: 'CameraPresetRecall', val: '33', val2: '2' },
+	{ category: 'Camera', label: 'Call Channel 3 Camera Preset 3', action: 'CameraPresetRecall', val: '33', val2: '3' },
+	{ category: 'Camera', label: 'Call Channel 3 Camera Preset 4', action: 'CameraPresetRecall', val: '33', val2: '4' },
+	{ category: 'Camera', label: 'Call Channel 3 Camera Preset 5', action: 'CameraPresetRecall', val: '33', val2: '5' },
+	{ category: 'Camera', label: 'Call Channel 3 Camera Preset 6', action: 'CameraPresetRecall', val: '33', val2: '6' },
+	{ category: 'Camera', label: 'Call Channel 3 Camera Preset 7', action: 'CameraPresetRecall', val: '33', val2: '7' },
+	{ category: 'Camera', label: 'Call Channel 3 Camera Preset 8', action: 'CameraPresetRecall', val: '33', val2: '8' },
+	{ category: 'Camera', label: 'Call Channel 3 Camera Preset 9', action: 'CameraPresetRecall', val: '33', val2: '9' },
+	{ category: 'Camera', label: 'Call Channel 4 Camera Preset 1', action: 'CameraPresetRecall', val: '34', val2: '1' },
+	{ category: 'Camera', label: 'Call Channel 4 Camera Preset 2', action: 'CameraPresetRecall', val: '34', val2: '2' },
+	{ category: 'Camera', label: 'Call Channel 4 Camera Preset 3', action: 'CameraPresetRecall', val: '34', val2: '3' },
+	{ category: 'Camera', label: 'Call Channel 4 Camera Preset 4', action: 'CameraPresetRecall', val: '34', val2: '4' },
+	{ category: 'Camera', label: 'Call Channel 4 Camera Preset 5', action: 'CameraPresetRecall', val: '34', val2: '5' },
+	{ category: 'Camera', label: 'Call Channel 4 Camera Preset 6', action: 'CameraPresetRecall', val: '34', val2: '6' },
+	{ category: 'Camera', label: 'Call Channel 4 Camera Preset 7', action: 'CameraPresetRecall', val: '34', val2: '7' },
+	{ category: 'Camera', label: 'Call Channel 4 Camera Preset 8', action: 'CameraPresetRecall', val: '34', val2: '8' },
+	{ category: 'Camera', label: 'Call Channel 4 Camera Preset 9', action: 'CameraPresetRecall', val: '34', val2: '9' },
+	{ category: 'Camera', label: 'Save Channel 1 Camera Preset 1', action: 'CameraSavePreset', val: '31', val2: '1' },
+	{ category: 'Camera', label: 'Save Channel 1 Camera Preset 2', action: 'CameraSavePreset', val: '31', val2: '2' },
+	{ category: 'Camera', label: 'Save Channel 1 Camera Preset 3', action: 'CameraSavePreset', val: '31', val2: '3' },
+	{ category: 'Camera', label: 'Save Channel 1 Camera Preset 4', action: 'CameraSavePreset', val: '31', val2: '4' },
+	{ category: 'Camera', label: 'Save Channel 1 Camera Preset 5', action: 'CameraSavePreset', val: '31', val2: '5' },
+	{ category: 'Camera', label: 'Save Channel 1 Camera Preset 6', action: 'CameraSavePreset', val: '31', val2: '6' },
+	{ category: 'Camera', label: 'Save Channel 1 Camera Preset 7', action: 'CameraSavePreset', val: '31', val2: '7' },
+	{ category: 'Camera', label: 'Save Channel 1 Camera Preset 8', action: 'CameraSavePreset', val: '31', val2: '8' },
+	{ category: 'Camera', label: 'Save Channel 1 Camera Preset 9', action: 'CameraSavePreset', val: '31', val2: '9' },
+	{ category: 'Camera', label: 'Save Channel 2 Camera Preset 1', action: 'CameraSavePreset', val: '32', val2: '1' },
+	{ category: 'Camera', label: 'Save Channel 2 Camera Preset 2', action: 'CameraSavePreset', val: '32', val2: '2' },
+	{ category: 'Camera', label: 'Save Channel 2 Camera Preset 3', action: 'CameraSavePreset', val: '32', val2: '3' },
+	{ category: 'Camera', label: 'Save Channel 2 Camera Preset 4', action: 'CameraSavePreset', val: '32', val2: '4' },
+	{ category: 'Camera', label: 'Save Channel 2 Camera Preset 5', action: 'CameraSavePreset', val: '32', val2: '5' },
+	{ category: 'Camera', label: 'Save Channel 2 Camera Preset 6', action: 'CameraSavePreset', val: '32', val2: '6' },
+	{ category: 'Camera', label: 'Save Channel 2 Camera Preset 7', action: 'CameraSavePreset', val: '32', val2: '7' },
+	{ category: 'Camera', label: 'Save Channel 2 Camera Preset 8', action: 'CameraSavePreset', val: '32', val2: '8' },
+	{ category: 'Camera', label: 'Save Channel 2 Camera Preset 9', action: 'CameraSavePreset', val: '32', val2: '9' },
+	{ category: 'Camera', label: 'Save Channel 3 Camera Preset 1', action: 'CameraSavePreset', val: '33', val2: '1' },
+	{ category: 'Camera', label: 'Save Channel 3 Camera Preset 2', action: 'CameraSavePreset', val: '33', val2: '2' },
+	{ category: 'Camera', label: 'Save Channel 3 Camera Preset 3', action: 'CameraSavePreset', val: '33', val2: '3' },
+	{ category: 'Camera', label: 'Save Channel 3 Camera Preset 4', action: 'CameraSavePreset', val: '33', val2: '4' },
+	{ category: 'Camera', label: 'Save Channel 3 Camera Preset 5', action: 'CameraSavePreset', val: '33', val2: '5' },
+	{ category: 'Camera', label: 'Save Channel 3 Camera Preset 6', action: 'CameraSavePreset', val: '33', val2: '6' },
+	{ category: 'Camera', label: 'Save Channel 3 Camera Preset 7', action: 'CameraSavePreset', val: '33', val2: '7' },
+	{ category: 'Camera', label: 'Save Channel 3 Camera Preset 8', action: 'CameraSavePreset', val: '33', val2: '8' },
+	{ category: 'Camera', label: 'Save Channel 3 Camera Preset 9', action: 'CameraSavePreset', val: '33', val2: '9' },
+	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 1', action: 'CameraSavePreset', val: '34', val2: '1' },
+	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 2', action: 'CameraSavePreset', val: '34', val2: '2' },
+	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 3', action: 'CameraSavePreset', val: '34', val2: '3' },
+	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 4', action: 'CameraSavePreset', val: '34', val2: '4' },
+	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 5', action: 'CameraSavePreset', val: '34', val2: '5' },
+	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 6', action: 'CameraSavePreset', val: '34', val2: '6' },
+	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 7', action: 'CameraSavePreset', val: '34', val2: '7' },
+	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 8', action: 'CameraSavePreset', val: '34', val2: '8' },
+	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 9', action: 'CameraSavePreset', val: '34', val2: '9' },
+
+];
+
+var Val3Cmd = [
+	{ category: 'Camera', label: 'Move CH1 Camera UP', action: 'CameraMove', val: '55', val2: '31', val3: '7' },
+	{ category: 'Camera', label: 'Move CH1 Camera DOWN', action: 'CameraMove', val: '44', val2: '31', val3: '7' },
+	{ category: 'Camera', label: 'Move CH1 Camera LEFT', action: 'CameraMove', val: '4C', val2: '31', val3: '7' },
+	{ category: 'Camera', label: 'Move CH1 Camera RIGHT', action: 'CameraMove', val: '52', val2: '31', val3: '7' },
+	{ category: 'Camera', label: 'Move CH2 Camera UP', action: 'CameraMove', val: '55', val2: '32', val3: '7' },
+	{ category: 'Camera', label: 'Move CH2 Camera DOWN', action: 'CameraMove', val: '44', val2: '32', val3: '7' },
+	{ category: 'Camera', label: 'Move CH2 Camera LEFT', action: 'CameraMove', val: '4C', val2: '32', val3: '7' },
+	{ category: 'Camera', label: 'Move CH2 Camera RIGHT', action: 'CameraMove', val: '52', val2: '32', val3: '7' },
+	{ category: 'Camera', label: 'Move CH3 Camera UP', action: 'CameraMove', val: '55', val2: '33', val3: '7' },
+	{ category: 'Camera', label: 'Move CH3 Camera DOWN', action: 'CameraMove', val: '44', val2: '33', val3: '7' },
+	{ category: 'Camera', label: 'Move CH3 Camera LEFT', action: 'CameraMove', val: '4C', val2: '33', val3: '7' },
+	{ category: 'Camera', label: 'Move CH3 Camera RIGHT', action: 'CameraMove', val: '52', val2: '33', val3: '7' },
+	{ category: 'Camera', label: 'Move CH4 Camera UP', action: 'CameraMove', val: '55', val2: '34', val3: '7' },
+	{ category: 'Camera', label: 'Move CH4 Camera DOWN', action: 'CameraMove', val: '44', val2: '34', val3: '7' },
+	{ category: 'Camera', label: 'Move CH4 Camera LEFT', action: 'CameraMove', val: '4C', val2: '34', val3: '7' },
+	{ category: 'Camera', label: 'Move CH4 Camera RIGHT', action: 'CameraMove', val: '52', val2: '34', val3: '7' },
+	{ category: 'Camera', label: 'Channel 1 Zoom IN', action: 'CameraZoom', val: '49', val2: '31', val3: '4' },
+	{ category: 'Camera', label: 'Channel 2 Zoom IN', action: 'CameraZoom', val: '49', val2: '32', val3: '4' },
+	{ category: 'Camera', label: 'Channel 3 Zoom IN', action: 'CameraZoom', val: '49', val2: '33', val3: '4' },
+	{ category: 'Camera', label: 'Channel 4 Zoom IN', action: 'CameraZoom', val: '49', val2: '34', val3: '4' },
+	{ category: 'Camera', label: 'Channel 1 Zoom OUT', action: 'CameraZoom', val: '4F', val2: '31', val3: '4' },
+	{ category: 'Camera', label: 'Channel 2 Zoom OUT', action: 'CameraZoom', val: '4F', val2: '32', val3: '4' },
+	{ category: 'Camera', label: 'Channel 3 Zoom OUT', action: 'CameraZoom', val: '4F', val2: '33', val3: '4' },
+	{ category: 'Camera', label: 'Channel 4 Zoom OUT', action: 'CameraZoom', val: '4F', val2: '34', val3: '4' },
+
+];
+
+for (index = 0; index < Val0Cmd.length; index++) {
+	presets.push({
+		category: Val0Cmd[index].category,
+		label: Val0Cmd[index].label,
+		bank: {
+			style: 'png',
+			text: '',
+			png64: eval("icons.image_" + (Val0Cmd[index].label).replace(/\s/g, '')),
+			pngalignment: 'center:center',
+			size: '18',
+			color: '16777215',
+			//			bgcolor: self.rgb(0, 0, 0)
+		},
+		actions: [
+			{
+				action: Val0Cmd[index].action,
+			}
+		]
+	});
+}
+
+for (index = 0; index < Val1Cmd.length; index++) {
+	presets.push({
+		category: Val1Cmd[index].category,
+		label: Val1Cmd[index].label,
+		bank: {
+			style: 'png',
+			text: '',
+			png64: eval("icons.image_" + (Val1Cmd[index].label).replace(/\s/g, '')),
+			pngalignment: 'center:center',
+			size: '18',
+			color: '16777215',
+			// bgcolor: self.rgb(0, 0, 0)
+		},
+		actions: [
+			{
+				action: Val1Cmd[index].action,
+				options: {
+					val: Val1Cmd[index].val,
+				}
+			}
+		]
+	});
+}
+
+for (index = 0; index < Val2Cmd.length; index++) {
+	presets.push({
+		category: Val2Cmd[index].category,
+		label: Val2Cmd[index].label,
+		bank: {
+			style: 'png',
+			text: '',
+			png64: eval("icons.image_" + (Val2Cmd[index].label).replace(/\s/g, '')),
+			pngalignment: 'center:center',
+			size: '18',
+			color: '16777215',
+			// bgcolor: self.rgb(0, 0, 0)
+		},
+		actions: [
+			{
+				action: Val2Cmd[index].action,
+				options: {
+					val: Val2Cmd[index].val,
+					val2: Val2Cmd[index].val2,
+				}
+			}
+		]
+	});
+}
+
+for (index = 0; index < Val3Cmd.length; index++) {
+	presets.push({
+		category: Val3Cmd[index].category,
+		label: Val3Cmd[index].label,
+		bank: {
+			style: 'png',
+			text: '',
+			png64: eval("icons.image_" + (Val3Cmd[index].label).replace(/\s/g, '')),
+			pngalignment: 'center:center',
+			size: '18',
+			color: '16777215',
+			// bgcolor: self.rgb(0, 0, 0)
+		},
+		actions: [
+			{
+				action: Val3Cmd[index].action,
+				options: {
+					val: Val3Cmd[index].val,
+					val2: Val3Cmd[index].val2,
+					val3: Val3Cmd[index].val3,
+				}
+			},
+		],
+		release_actions: [
+			{
+				action: Val3Cmd[index].action,
+				//delay: '20',
+				options: {
+					val: '53',
+					val2: Val3Cmd[index].val2,
+					val3: Val3Cmd[index].val3,
+				}
+			}
+		]
+	});
+
+}
+
+//==================== System :==============
+module.exports = presets;
