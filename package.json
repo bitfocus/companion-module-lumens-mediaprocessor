@@ -1,14 +1,14 @@
 {
   "name": "lumens-mediaprocessor",
-  "version": "1.0.0",
-  "api_version": "1.0.0",
+  "version": "1.0.1",
+  "api_version": "1.0.1",
   "description": "Lumens Media Processor",
   "keywords": [
     "Lumens",
-    "Media Processor"
+    "Encode"
   ],
   "manufacturer": "Lumens",
-  "product": "LC200",
+  "product": "Media Processor",
   "shortname": "MediaProcessor",
   "homepage": "https://github.com/bitfocus/companion-module-lumens-mediaprocessor#readme",
   "main": "index.js",
