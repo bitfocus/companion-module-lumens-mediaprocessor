@@ -92,12 +92,11 @@ instance.prototype.config_fields = function () {
 			value: `
 				<div class="alert alert-danger">
 					<h3>Lumens : 「We Make Your Job Easier」 !</h3>
-						This module controls LUMENS ${self.config.product} media processor with TCP over IP protocol
+						This module controls LUMENS media processor with TCP over IP protocol.
 						<br>
-						For more information about Lumens Media processor, please refer ... 
+						For more details about Lumens media processor, please refer to... 
 						<br>
-						<a href="https://www.mylumens.com/en/Products/3/Media-Processor" target="_new" class="btn btn-warning mr-1">LC200 info.</a>	
-						<a href="https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_3.pdf" target="_new" class="btn btn-warning mr-1">LC200 Command List.</a>					
+						<a href="https://www.mylumens.com/en/Products/3/Media-Processor" target="_new" class="btn btn-warning mr-1">Media Processor info.</a>					
 					<br><br><br>
 					<h4>Please fill in the IP below</h4>
 				</div>

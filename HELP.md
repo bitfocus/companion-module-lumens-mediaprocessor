@@ -8,6 +8,15 @@ This module is used to control Lumens media processor.
 - Type in the IP address of the device.
 - Type in the port of the device (default is 5080).
 
+### More Detailed Information
+
+Lumens prepares a more detailed operation document for you.  
+You also can find the available actions for different product model.  
+In detail, Please refer to the following link :  
+https://www.lumens.com.tw/en/Downloads_Search?id=0&keyword=Companion&keyword2=  
+or you can visit https://www.lumens.com.tw/en/Download  
+then search "companion"
+
 ### Available Actions in this module
 
 ##### === System ===
