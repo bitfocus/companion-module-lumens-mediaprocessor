@@ -1,60 +1,60 @@
-var index;
+var index
 
-var AudioVolumeOptions = [];
-var VideoSourceIDOptions = [];
-var LayoutOptions = [];
-var BackgroundOptions = [];
-var OverlaySceneOptions = [];
-var PresetOptions = [];
-var MoveSpeedOptions = [];
-var ZoomSpeedOptions = [];
+var AudioVolumeOptions = []
+var VideoSourceIDOptions = []
+var LayoutOptions = []
+var BackgroundOptions = []
+var OverlaySceneOptions = []
+var PresetOptions = []
+var MoveSpeedOptions = []
+var ZoomSpeedOptions = []
 
 var ChannelOptions = [
 	{ id: '31', label: 'Channel 1' },
 	{ id: '32', label: 'Channel 2' },
 	{ id: '33', label: 'Channel 3' },
 	{ id: '34', label: 'Channel 4' },
-];
+]
 
 var AudioOutputOptions = [
 	{ id: '31', label: 'Line & HDMI output' },
 	{ id: '32', label: 'PGM output' },
-];
+]
 
 var AudioMuteOptions = [
 	{ id: '30', label: 'Audio Unmute' },
 	{ id: '31', label: 'Audio Mute' },
-];
+]
 
 var AudioInputTypeOptions = [
 	{ id: '31', label: 'Line In' },
 	{ id: '32', label: 'Mic In' },
 	{ id: '33', label: 'HDMI In' },
 	{ id: '36', label: 'IP Audio In' },
-];
+]
 
 var AudioOutputTypeOptions = [
 	{ id: '31', label: 'ALL' },
 	{ id: '32', label: 'Line out + PGM' },
 	{ id: '33', label: 'MultiView' },
-];
+]
 
 var MacroOptions = [
 	{ id: '31', label: 'Macro 1' },
 	{ id: '32', label: 'Macro 2' },
 	{ id: '33', label: 'Macro 3' },
-];
+]
 
 var StreamOptions = [
 	{ id: '31', label: 'Stream 1' },
 	{ id: '32', label: 'Stream 2' },
 	{ id: '33', label: 'Stream 3' },
-];
+]
 
 var StreamStartStopOptions = [
 	{ id: '1', label: 'Stop Stream' },
 	{ id: '2', label: 'Start Stream' },
-];
+]
 
 var CameraMoveOptions = [
 	{ id: '53', label: 'Stop' },
@@ -62,65 +62,64 @@ var CameraMoveOptions = [
 	{ id: '44', label: 'Down' },
 	{ id: '4C', label: 'Left' },
 	{ id: '52', label: 'Right' },
-];
+]
 
 var ZoomMoveOptions = [
 	{ id: '53', label: 'Stop' },
 	{ id: '49', label: 'Zoom In' },
 	{ id: '4F', label: 'Zoom Out' },
-];
+]
 
 // create Options
 for (index = 0; index <= 125; index++) {
-	AudioVolumeOptions.push({ id: index.toString(16), label: 'Volume ' + parseInt(index) },);
+	AudioVolumeOptions.push({ id: index.toString(16), label: 'Volume ' + parseInt(index) })
 }
 
 for (index = 1; index <= 255; index++) {
-	VideoSourceIDOptions.push({ id: index.toString(16), label: 'Source ' + parseInt(index) },);
+	VideoSourceIDOptions.push({ id: index.toString(16), label: 'Source ' + parseInt(index) })
 }
 
 for (index = 1; index <= 18; index++) {
-	LayoutOptions.push({ id: index.toString(16), label: 'Layout ' + parseInt(index) },);
+	LayoutOptions.push({ id: index.toString(16), label: 'Layout ' + parseInt(index) })
 }
 
 for (index = 0; index <= 9; index++) {
-	BackgroundOptions.push({ id: index.toString(16), label: 'Background ' + parseInt(index) },);
+	BackgroundOptions.push({ id: index.toString(16), label: 'Background ' + parseInt(index) })
 }
 
 for (index = 0; index <= 30; index++) {
-	OverlaySceneOptions.push({ id: index.toString(16), label: 'ID ' + parseInt(index) },);
+	OverlaySceneOptions.push({ id: index.toString(16), label: 'ID ' + parseInt(index) })
 }
 
 for (index = 1; index <= 9; index++) {
-	PresetOptions.push({ id: index.toString(16), label: 'Preset ' + parseInt(index) },);
+	PresetOptions.push({ id: index.toString(16), label: 'Preset ' + parseInt(index) })
 }
 
 for (index = 1; index <= 24; index++) {
 	if (index === 1) {
-		MoveSpeedOptions.push({ id: '1', label: 'Speed 1 (low speed)' },);
+		MoveSpeedOptions.push({ id: '1', label: 'Speed 1 (low speed)' })
 	} else if (index === 24) {
-		MoveSpeedOptions.push({ id: '18', label: 'Speed 24 (high speed)' },);
+		MoveSpeedOptions.push({ id: '18', label: 'Speed 24 (high speed)' })
 	} else {
-		MoveSpeedOptions.push({ id: index.toString(16), label: 'Speed ' + parseInt(index) },);
+		MoveSpeedOptions.push({ id: index.toString(16), label: 'Speed ' + parseInt(index) })
 	}
 }
 
 for (index = 1; index <= 7; index++) {
 	if (index === 1) {
-		ZoomSpeedOptions.push({ id: '1', label: 'Speed 1 (low speed)' },);
+		ZoomSpeedOptions.push({ id: '1', label: 'Speed 1 (low speed)' })
 	} else if (index === 7) {
-		ZoomSpeedOptions.push({ id: '7', label: 'Speed 7 (high speed)' },);
+		ZoomSpeedOptions.push({ id: '7', label: 'Speed 7 (high speed)' })
 	} else {
-		ZoomSpeedOptions.push({ id: index.toString(16), label: 'Speed ' + parseInt(index) },);
+		ZoomSpeedOptions.push({ id: index.toString(16), label: 'Speed ' + parseInt(index) })
 	}
 }
 
-var actions =
-{
+var actions = {
 	//=============== System catalog =================
-	'PowerOff': { label: 'Power Off', },
+	PowerOff: { label: 'Power Off' },
 
-	'PowerMode': {
+	PowerMode: {
 		label: 'Power Mode',
 		options: [
 			{
@@ -129,12 +128,13 @@ var actions =
 				id: 'val',
 				choices: [
 					{ id: '31', label: 'Standby' },
-					{ id: '32', label: 'Wake Up' }]
-			}
-		]
+					{ id: '32', label: 'Wake Up' },
+				],
+			},
+		],
 	},
 
-	'BackuptoUSB': {
+	BackuptoUSB: {
 		label: 'Backup to USB',
 		options: [
 			{
@@ -143,146 +143,147 @@ var actions =
 				id: 'val',
 				choices: [
 					{ id: '31', label: 'Stop' },
-					{ id: '30', label: 'Start' }]
-			}
-		]
+					{ id: '30', label: 'Start' },
+				],
+			},
+		],
 	},
 
 	//=============== Video/Audio catalog =================
-	'StartRecord': { label: 'Start Record', },
+	StartRecord: { label: 'Start Record' },
 
-	'StopRecord': { label: 'Stop Record', },
+	StopRecord: { label: 'Stop Record' },
 
-	'AudioVolumeInput': {
+	AudioVolumeInput: {
 		label: 'Audio Volume Input',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Audio Input Channel',
 				id: 'val',
-				choices: ChannelOptions
+				choices: ChannelOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Audio Volume',
 				id: 'val2',
 				choices: AudioVolumeOptions,
-			}
-		]
+			},
+		],
 	},
 
-	'AudioVolumeOutput': {
+	AudioVolumeOutput: {
 		label: 'Audio Volume Output',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Audio Output Channel',
 				id: 'val',
-				choices: AudioOutputOptions
+				choices: AudioOutputOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Audio Volume',
 				id: 'val2',
 				choices: AudioVolumeOptions,
-			}
-		]
+			},
+		],
 	},
 
-	'AudioMuteInput': {
+	AudioMuteInput: {
 		label: 'Audio Mute Input',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Audio Input Channel',
 				id: 'val',
-				choices: ChannelOptions
+				choices: ChannelOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Audio Mute',
 				id: 'val2',
 				choices: AudioMuteOptions,
-			}
-		]
+			},
+		],
 	},
 
-	'AudioMuteOutput': {
+	AudioMuteOutput: {
 		label: 'Audio Mute Output',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Audio Output Channel',
 				id: 'val',
-				choices: AudioOutputOptions
+				choices: AudioOutputOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Audio Mute',
 				id: 'val2',
 				choices: AudioMuteOptions,
-			}
-		]
+			},
+		],
 	},
 
-	'AudioTypeInput': {
+	AudioTypeInput: {
 		label: 'Audio Type Input',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Audio Input Channel',
 				id: 'val',
-				choices: ChannelOptions
+				choices: ChannelOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Audio Type',
 				id: 'val2',
 				choices: AudioInputTypeOptions,
-			}
-		]
+			},
+		],
 	},
 
-	'AudioTypeOutput': {
+	AudioTypeOutput: {
 		label: 'Audio Type Output',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Audio Output Channel',
 				id: 'val',
-				choices: AudioOutputOptions
+				choices: AudioOutputOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Audio Type',
 				id: 'val2',
 				choices: AudioOutputTypeOptions,
-			}
-		]
+			},
+		],
 	},
 
-	'VideoSourceID': {
+	VideoSourceID: {
 		label: 'Video Source ID',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Video Input Channel',
 				id: 'val',
-				choices: ChannelOptions
+				choices: ChannelOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Video source ID',
 				id: 'val2',
 				choices: VideoSourceIDOptions,
-			}
-		]
+			},
+		],
 	},
 
-	//=============== Image catalog =================	
-	'Snapshot': { label: 'Snapshot', },
+	//=============== Image catalog =================
+	Snapshot: { label: 'Snapshot' },
 
-	'Layout': {
+	Layout: {
 		label: 'Layout',
 		options: [
 			{
@@ -290,11 +291,11 @@ var actions =
 				label: 'Layout',
 				id: 'val',
 				choices: LayoutOptions,
-			}
-		]
+			},
+		],
 	},
 
-	'Background': {
+	Background: {
 		label: 'Background',
 		options: [
 			{
@@ -302,11 +303,11 @@ var actions =
 				label: 'Background ID(0x00 : off)',
 				id: 'val',
 				choices: BackgroundOptions,
-			}
-		]
+			},
+		],
 	},
 
-	'Overlay': {
+	Overlay: {
 		label: 'Overlay',
 		options: [
 			{
@@ -314,11 +315,11 @@ var actions =
 				label: 'Overlay ID (0x00 : off)',
 				id: 'val',
 				choices: BackgroundOptions,
-			}
-		]
+			},
+		],
 	},
 
-	'Overlay': {
+	Overlay: {
 		label: 'Overlay',
 		options: [
 			{
@@ -326,11 +327,11 @@ var actions =
 				label: 'Overlay ID (0x00 : off)',
 				id: 'val',
 				choices: OverlaySceneOptions,
-			}
-		]
+			},
+		],
 	},
 
-	'Scene': {
+	Scene: {
 		label: 'Scene',
 		options: [
 			{
@@ -338,11 +339,11 @@ var actions =
 				label: 'Scene ID',
 				id: 'val',
 				choices: OverlaySceneOptions,
-			}
-		]
+			},
+		],
 	},
 
-	'Macro': {
+	Macro: {
 		label: 'Macro',
 		options: [
 			{
@@ -350,115 +351,114 @@ var actions =
 				label: 'Macro ID',
 				id: 'val',
 				choices: MacroOptions,
-			}
-		]
+			},
+		],
 	},
 
-	//=============== Newwork catalog =================	
-	'Stream': {
+	//=============== Newwork catalog =================
+	Stream: {
 		label: 'Stream Control',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Stream ID',
 				id: 'val',
-				choices: StreamOptions
+				choices: StreamOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Stream Action',
 				id: 'val2',
-				choices: StreamStartStopOptions
-			}
-		]
+				choices: StreamStartStopOptions,
+			},
+		],
 	},
 
 	//=============== Camera catalog =================
-	'CameraPresetRecall': {
+	CameraPresetRecall: {
 		label: 'Camera Preset Recall',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Camera Channel',
 				id: 'val',
-				choices: ChannelOptions
+				choices: ChannelOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Camera Preset ID',
 				id: 'val2',
-				choices: PresetOptions
-			}
-		]
+				choices: PresetOptions,
+			},
+		],
 	},
 
-	'CameraSavePreset': {
+	CameraSavePreset: {
 		label: 'Camera Save Preset',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Camera Channel',
 				id: 'val',
-				choices: ChannelOptions
+				choices: ChannelOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Camera Preset ID',
 				id: 'val2',
-				choices: PresetOptions
-			}
-		]
+				choices: PresetOptions,
+			},
+		],
 	},
 
-	'CameraMove': {
+	CameraMove: {
 		label: 'Camera Move',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Camera Moving Actions',
 				id: 'val',
-				choices: CameraMoveOptions
+				choices: CameraMoveOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Camera Channel',
 				id: 'val2',
-				choices: ChannelOptions
+				choices: ChannelOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Camera Move Speed',
 				id: 'val3',
-				choices: MoveSpeedOptions
-			}
-		]
+				choices: MoveSpeedOptions,
+			},
+		],
 	},
 
-	'CameraZoom': {
+	CameraZoom: {
 		label: 'Camera Zoom',
 		options: [
 			{
 				type: 'dropdown',
 				label: 'Camera Zoom Actions',
 				id: 'val',
-				choices: ZoomMoveOptions
+				choices: ZoomMoveOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Camera Channel',
 				id: 'val2',
-				choices: ChannelOptions
+				choices: ChannelOptions,
 			},
 			{
 				type: 'dropdown',
 				label: 'Camera Zoom Speed',
 				id: 'val3',
-				choices: ZoomSpeedOptions
-			}
-		]
+				choices: ZoomSpeedOptions,
+			},
+		],
 	},
-
 }
 
 //==================== System :==============
-module.exports = actions;
+module.exports = actions
