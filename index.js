@@ -140,7 +140,7 @@ instance.prototype.init_presets = function () {
 instance.prototype.actions = function (system) {
 	var self = this
 
-	self.system.emit('instance_actions', self.id, actions)
+	self.setActions(actions)
 }
 
 instance.prototype.action = function (action) {
