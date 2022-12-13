@@ -1,11 +1,12 @@
-var icons = require('./icons')
-var presets = []
-var index
+var icons = require('./icons');
+var presets = [];
+var index;
 var Val0Cmd = [
 	{ category: 'Video/Audio', label: 'Start Record', action: 'StartRecord' },
 	{ category: 'Video/Audio', label: 'Stop Record', action: 'StopRecord' },
 	{ category: 'Image', label: 'Snapshot', action: 'Snapshot' },
-]
+
+];
 
 var Val1Cmd = [
 	{ category: 'System', label: 'Standby', action: 'PowerMode', val: '31' },
@@ -58,7 +59,11 @@ var Val1Cmd = [
 	{ category: 'Image', label: 'Macro 1', action: 'Macro', val: '31' },
 	{ category: 'Image', label: 'Macro 2', action: 'Macro', val: '32' },
 	{ category: 'Image', label: 'Macro 3', action: 'Macro', val: '33' },
-]
+	{ category: 'Video/Audio', label: 'Audio Input XLR Stereo', action: 'XLRInputMode', val: '30' },
+	{ category: 'Video/Audio', label: 'Audio Input XLR Mono', action: 'XLRInputMode', val: '31' },
+	{ category: 'Video/Audio', label: 'Audio XLR Power On', action: 'XLRPowerMode', val: '33' },
+	{ category: 'Video/Audio', label: 'Audio XLR Power Off', action: 'XLRPowerMode', val: '30' },
+];
 
 var Val2Cmd = [
 	{ category: 'Video/Audio', label: 'Audio In 1 Volume 25', action: 'AudioVolumeInput', val: '31', val2: '19' },
@@ -107,18 +112,23 @@ var Val2Cmd = [
 	{ category: 'Video/Audio', label: 'Audio Input 1 Mic In', action: 'AudioTypeInput', val: '31', val2: '32' },
 	{ category: 'Video/Audio', label: 'Audio Input 1 HDMI In', action: 'AudioTypeInput', val: '31', val2: '33' },
 	{ category: 'Video/Audio', label: 'Audio Input 1 IP Audio', action: 'AudioTypeInput', val: '31', val2: '36' },
+	{ category: 'Video/Audio', label: 'Audio Input 1 Follow', action: 'AudioTypeInput', val: '31', val2: '3a' },
 	{ category: 'Video/Audio', label: 'Audio Input 2 Line In', action: 'AudioTypeInput', val: '32', val2: '31' },
 	{ category: 'Video/Audio', label: 'Audio Input 2 Mic In', action: 'AudioTypeInput', val: '32', val2: '32' },
 	{ category: 'Video/Audio', label: 'Audio Input 2 HDMI In', action: 'AudioTypeInput', val: '32', val2: '33' },
 	{ category: 'Video/Audio', label: 'Audio Input 2 IP Audio', action: 'AudioTypeInput', val: '32', val2: '36' },
+	{ category: 'Video/Audio', label: 'Audio Input 2 Follow', action: 'AudioTypeInput', val: '32', val2: '3a' },
 	{ category: 'Video/Audio', label: 'Audio Input 3 Line In', action: 'AudioTypeInput', val: '33', val2: '31' },
 	{ category: 'Video/Audio', label: 'Audio Input 3 Mic In', action: 'AudioTypeInput', val: '33', val2: '32' },
 	{ category: 'Video/Audio', label: 'Audio Input 3 HDMI In', action: 'AudioTypeInput', val: '33', val2: '33' },
 	{ category: 'Video/Audio', label: 'Audio Input 3 IP Audio', action: 'AudioTypeInput', val: '33', val2: '36' },
+	{ category: 'Video/Audio', label: 'Audio Input XLR Line', action: 'AudioTypeInput', val: '33', val2: '37' },
+	{ category: 'Video/Audio', label: 'Audio Input XLR Mic', action: 'AudioTypeInput', val: '33', val2: '38' },
 	{ category: 'Video/Audio', label: 'Audio Input 4 Line In', action: 'AudioTypeInput', val: '34', val2: '31' },
 	{ category: 'Video/Audio', label: 'Audio Input 4 Mic In', action: 'AudioTypeInput', val: '34', val2: '32' },
 	{ category: 'Video/Audio', label: 'Audio Input 4 HDMI In', action: 'AudioTypeInput', val: '34', val2: '33' },
 	{ category: 'Video/Audio', label: 'Audio Input 4 IP Audio', action: 'AudioTypeInput', val: '34', val2: '36' },
+	{ category: 'Video/Audio', label: 'Audio Input 4 USB Audio', action: 'AudioTypeInput', val: '34', val2: '39' },
 	{ category: 'Video/Audio', label: 'Audio Output ALL', action: 'AudioTypeOutput', val: '31', val2: '31' },
 	{ category: 'Video/Audio', label: 'Audio Output Line Out PGM', action: 'AudioTypeOutput', val: '31', val2: '32' },
 	{ category: 'Video/Audio', label: 'Audio Output Multiview', action: 'AudioTypeOutput', val: '31', val2: '33' },
@@ -240,7 +250,8 @@ var Val2Cmd = [
 	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 7', action: 'CameraSavePreset', val: '34', val2: '7' },
 	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 8', action: 'CameraSavePreset', val: '34', val2: '8' },
 	{ category: 'Camera', label: 'Save Channel 4 Camera Preset 9', action: 'CameraSavePreset', val: '34', val2: '9' },
-]
+
+];
 
 var Val3Cmd = [
 	{ category: 'Camera', label: 'Move CH1 Camera UP', action: 'CameraMove', val: '55', val2: '31', val3: '7' },
@@ -267,7 +278,8 @@ var Val3Cmd = [
 	{ category: 'Camera', label: 'Channel 2 Zoom OUT', action: 'CameraZoom', val: '4F', val2: '32', val3: '4' },
 	{ category: 'Camera', label: 'Channel 3 Zoom OUT', action: 'CameraZoom', val: '4F', val2: '33', val3: '4' },
 	{ category: 'Camera', label: 'Channel 4 Zoom OUT', action: 'CameraZoom', val: '4F', val2: '34', val3: '4' },
-]
+
+];
 
 for (index = 0; index < Val0Cmd.length; index++) {
 	presets.push({
@@ -276,7 +288,7 @@ for (index = 0; index < Val0Cmd.length; index++) {
 		bank: {
 			style: 'png',
 			text: '',
-			png64: eval('icons.image_' + Val0Cmd[index].label.replace(/\s/g, '')),
+			png64: eval("icons.image_" + (Val0Cmd[index].label).replace(/\s/g, '')),
 			pngalignment: 'center:center',
 			size: '18',
 			color: '16777215',
@@ -285,9 +297,9 @@ for (index = 0; index < Val0Cmd.length; index++) {
 		actions: [
 			{
 				action: Val0Cmd[index].action,
-			},
-		],
-	})
+			}
+		]
+	});
 }
 
 for (index = 0; index < Val1Cmd.length; index++) {
@@ -297,7 +309,7 @@ for (index = 0; index < Val1Cmd.length; index++) {
 		bank: {
 			style: 'png',
 			text: '',
-			png64: eval('icons.image_' + Val1Cmd[index].label.replace(/\s/g, '')),
+			png64: eval("icons.image_" + (Val1Cmd[index].label).replace(/\s/g, '')),
 			pngalignment: 'center:center',
 			size: '18',
 			color: '16777215',
@@ -308,10 +320,10 @@ for (index = 0; index < Val1Cmd.length; index++) {
 				action: Val1Cmd[index].action,
 				options: {
 					val: Val1Cmd[index].val,
-				},
-			},
-		],
-	})
+				}
+			}
+		]
+	});
 }
 
 for (index = 0; index < Val2Cmd.length; index++) {
@@ -321,7 +333,7 @@ for (index = 0; index < Val2Cmd.length; index++) {
 		bank: {
 			style: 'png',
 			text: '',
-			png64: eval('icons.image_' + Val2Cmd[index].label.replace(/\s/g, '')),
+			png64: eval("icons.image_" + (Val2Cmd[index].label).replace(/\s/g, '')),
 			pngalignment: 'center:center',
 			size: '18',
 			color: '16777215',
@@ -333,10 +345,10 @@ for (index = 0; index < Val2Cmd.length; index++) {
 				options: {
 					val: Val2Cmd[index].val,
 					val2: Val2Cmd[index].val2,
-				},
-			},
-		],
-	})
+				}
+			}
+		]
+	});
 }
 
 for (index = 0; index < Val3Cmd.length; index++) {
@@ -346,7 +358,7 @@ for (index = 0; index < Val3Cmd.length; index++) {
 		bank: {
 			style: 'png',
 			text: '',
-			png64: eval('icons.image_' + Val3Cmd[index].label.replace(/\s/g, '')),
+			png64: eval("icons.image_" + (Val3Cmd[index].label).replace(/\s/g, '')),
 			pngalignment: 'center:center',
 			size: '18',
 			color: '16777215',
@@ -359,7 +371,7 @@ for (index = 0; index < Val3Cmd.length; index++) {
 					val: Val3Cmd[index].val,
 					val2: Val3Cmd[index].val2,
 					val3: Val3Cmd[index].val3,
-				},
+				}
 			},
 		],
 		release_actions: [
@@ -370,11 +382,12 @@ for (index = 0; index < Val3Cmd.length; index++) {
 					val: '53',
 					val2: Val3Cmd[index].val2,
 					val3: Val3Cmd[index].val3,
-				},
-			},
-		],
-	})
+				}
+			}
+		]
+	});
+
 }
 
 //==================== System :==============
-module.exports = presets
+module.exports = presets;

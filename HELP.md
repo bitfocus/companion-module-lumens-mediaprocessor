@@ -1,3 +1,7 @@
+## Companion Module Version : 3.0.1
+
+=================================================================================
+
 ## lumens-mediaprocessor module
 
 This module is used to control Lumens media processor.
@@ -33,8 +37,11 @@ then search "companion"
 - Audio Volume Output : Channel = (1)Line&HDMI output, (2)PGM output; Volume = 0 ~ 125
 - Audio Mute Input : Channel = 1 ~ 4; Mode : (1)unmute, (2)mute
 - Audio Mute Output : Channel = (1)Line&HDMI output, (2)PGM output; Mode : (1)unmute, (2)mute
-- Audio Type Input : Channel = 1 ~ 4; Type : (1)Line, (2)Mic, (3)HDMI, (4)IP Audio
+- Audio Type Input : Channel = 1 ~ 4; Type : (1)Line, (2)Mic, (3)HDMI, (4)IP Audio, (5)XLR-Line,
+  (6)XLR-Mic, (7)USB Audio, (8)Follow
 - Audio Type Output : Channel = (1)Line&HDMI output, (2)PGM output; Type : (1)ALL, (2)Line+PGM, (3)MultiView
+- XLR Input Mode : (1)Stereo, (2)Mono
+- XLR Power Mode : (1)XLR power left right off (2)XLR power left right ON
 - Video Source ID : Channel = 1 ~ 4; ID : 1 ~ 255
 
 ##### === Image ===
